@@ -2,6 +2,7 @@ import { Metadata, Viewport } from "next";
 import { PropsWithChildren } from "react";
 
 import "./globals.css";
+import Nav from "../components/Nav";
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const siteName = "Volvo Cars | Swedish luxury automobile marque";
@@ -25,9 +26,10 @@ export const viewport: Viewport = {
 
 const RootLayout: React.FC<PropsWithChildren> = async ({ children }) => {
   return (
-    <html lang="en">
-      <body className="bg-feedback-green" data-color-mode="dark">
-        {children}
+    <html lang="en" className="bg-primary" data-color-mode="dark">
+      <body>
+        <Nav />
+        <div className="container py-24">{children}</div>
       </body>
     </html>
   );
