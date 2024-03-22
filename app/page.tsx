@@ -1,9 +1,12 @@
-import { HelloWorld } from '../components/HelloWorld';
+import CarCard from '../components/CarCard';
 
 const HomePage = () => {
     return (
-        <div>
-            <HelloWorld />
+        <div className='flex gap-24'>
+            <CarCard />
+            <CarCard />
+            <CarCard />
+            <CarCard />
         </div>
     );
 };

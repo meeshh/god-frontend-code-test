@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 
 const RootLayout: React.FC<PropsWithChildren> = async ({ children }) => {
   return (
-    <html lang="en" className="bg-primary" data-color-mode="dark">
+    <html lang="en" className="bg-primary" data-color-mode="light">
       <body>
         <Nav />
         <div className="container py-24">{children}</div>
