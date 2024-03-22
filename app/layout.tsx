@@ -26,7 +26,9 @@ export const viewport: Viewport = {
 const RootLayout: React.FC<PropsWithChildren> = async ({ children }) => {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="bg-feedback-green" data-color-mode="dark">
+        {children}
+      </body>
     </html>
   );
 };
