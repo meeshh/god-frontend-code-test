@@ -1,14 +1,7 @@
-import CarCard from '../components/CarCard';
+import Carousel from "../components/Carousel";
 
 const HomePage = () => {
-    return (
-        <div className='flex gap-24'>
-            <CarCard />
-            <CarCard />
-            <CarCard />
-            <CarCard />
-        </div>
-    );
+  return <Carousel />;
 };
 
 export default HomePage;

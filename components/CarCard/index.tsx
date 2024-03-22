@@ -6,7 +6,7 @@ const CarCard = () => {
       <figure>
         <figcaption>
           <h6 className="font- uppercase text-secondary font-medium">Body Type</h6>
-          <div className="font-20 flex gap-16">
+          <div className="font-20 md:flex gap-16">
             <h6 className="font-medium">Car Name</h6>
             <h6 className="text-secondary mb-16">Model type</h6>
           </div>
