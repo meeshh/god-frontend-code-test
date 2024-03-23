@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CarType } from "../../types";
+import ActionLink from "./ActionLink";
 
 type CarCardProps = CarType;
 
@@ -17,7 +18,7 @@ const CarCard: React.FC<CarCardProps> = ({
           <h6 className="font- uppercase text-secondary font-medium">
             {bodyType}
           </h6>
-          <div className="md:flex gap-16" style={{fontSize: '90%'}}>
+          <div className="md:flex gap-16" style={{ fontSize: "90%" }}>
             <h6 className="font-medium">{modelName}</h6>
             <h6 className="text-secondary mb-16">{modelType}</h6>
           </div>
@@ -33,6 +34,10 @@ const CarCard: React.FC<CarCardProps> = ({
           alt={modelName}
         />
       </figure>
+      <footer className="flex items-center justify-center gap-16 mt-16">
+        <ActionLink label="Learn" href={`/learn/${id}`} />
+        <ActionLink label="Shop" href={`/shop/${id}`} />
+      </footer>
     </article>
   );
 };
