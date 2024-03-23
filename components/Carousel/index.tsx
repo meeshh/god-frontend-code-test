@@ -19,6 +19,8 @@ const Carousel = () => {
   const [activePage, setActivePage] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
 
+  // the native breakpoints from `swiper` do not work well with nextjs
+  // so we use `react-responsive` to get the breakpoints
   const isSmall = useMediaQuery({ query: "(max-width: 640px)" });
   const isMedium = useMediaQuery({ query: "(max-width: 768px)" });
   const isLarge = useMediaQuery({ query: "(max-width: 1024px)" });
@@ -78,14 +80,15 @@ const Carousel = () => {
         ))}
       </swiper-container>
 
-      {isSmall || isMedium ? (
-        <Pagination activePage={activePage} numberOfPages={numberOfPages} />
-      ) : (
-        <NavControls
-          handlePrevSlide={handlePrevSlide}
-          handleNextSlide={handleNextSlide}
-        />
-      )}
+      {/* ideally conditionally render the following two components depending on the window size
+       * but there will be the hydration problem with SSR since the window object is not available on the server
+       * They are not big components so for the sake of the example it's fine to render them always and hide them with CSS
+       */}
+      <Pagination activePage={activePage} numberOfPages={numberOfPages} />
+      <NavControls
+        handlePrevSlide={handlePrevSlide}
+        handleNextSlide={handleNextSlide}
+      />
     </>
   );
 };

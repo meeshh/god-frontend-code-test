@@ -1,6 +1,6 @@
 import Carousel from "../components/Carousel";
 
-const HomePage = () => {
+const HomePage = async () => {
   return <Carousel />;
 };
 
