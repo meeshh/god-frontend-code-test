@@ -30,6 +30,7 @@ const CarCard: React.FC<CarCardProps> = ({
           }}
           width={300}
           height={200}
+          priority
           src={imageUrl}
           alt={modelName}
         />

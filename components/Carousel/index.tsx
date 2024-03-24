@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import CarCard from "../CarCard";
 import { register } from "swiper/element/bundle";
-import { BodyType, CarType } from "../../types";
+import { CarType } from "../../types";
 import { useMediaQuery } from "react-responsive";
 import Pagination from "./Pagination";
 import NavControls from "./NavControls";
