@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Carousel from "../components/Carousel";
-import Filter from "../components/Carousel/Filter";
+import Filter from "../components/Filter/Filter";
 import { BodyType, CarType } from "../types";
 import { getCars } from "../utils/cars";
 import debounce from "lodash.debounce";
