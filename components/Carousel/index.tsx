@@ -8,6 +8,7 @@ import { getCars } from "../../utils/cars";
 import { useMediaQuery } from "react-responsive";
 import Pagination from "./Pagination";
 import NavControls from "./NavControls";
+import { BODY_TYPES } from "../../utils/constants";
 
 register();
 
@@ -83,9 +84,11 @@ const Carousel = () => {
           onChange={handleFilter}
         >
           <option value="">None</option>
-          <option value="sedan">Sedan</option>
-          <option value="suv">SUV</option>
-          <option value="estate">Estate</option>
+          {BODY_TYPES.map((bodyType) => (
+            <option key={bodyType} value={bodyType.toLowerCase()}>
+              {bodyType}
+            </option>
+          ))}
         </select>
       </div>
       <swiper-container

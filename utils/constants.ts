@@ -1,0 +1,1 @@
+export const BODY_TYPES = ["SUV", "Estate", "Sedan"];
