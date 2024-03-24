@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import CarCard from "../CarCard";
 import { register } from "swiper/element/bundle";
-import { CarType } from "../../types";
+import { BodyType, CarType } from "../../types";
 import { getCars } from "../../utils/cars";
 import { useMediaQuery } from "react-responsive";
 import Pagination from "./Pagination";
@@ -18,6 +18,7 @@ const Carousel = () => {
   const [slidesPerView, setSlidesPerView] = useState<1 | 2 | 3 | 4 | "auto">(4);
   const [activePage, setActivePage] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
+  const [filter, setFilter] = useState<BodyType | undefined>(undefined);
 
   // the native breakpoints from `swiper` do not work well with nextjs
   // so we use `react-responsive` to get the breakpoints
@@ -32,12 +33,14 @@ const Carousel = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getCars();
-
+      const data = await getCars(filter);
       setCars(data);
+
+      // set carousel to the first slide when the filter changes
+      swiperElRef.current?.swiper?.slideTo(0);
     };
     fetchData();
-  }, []);
+  }, [filter]);
 
   useEffect(() => {
     setNumberOfPages(
@@ -63,8 +66,28 @@ const Carousel = () => {
     swiperElRef.current?.swiper?.slidePrev();
   };
 
+  const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(e.target.value as BodyType);
+  };
+
   return (
     <>
+      <div className="flex flex-col">
+        <label className="mb-4" htmlFor="carTypeSelector">
+          Select a Car Type
+        </label>
+        <select
+          id="carTypeSelector"
+          className="mb-16 px-16 py-4 border rounded w-xs"
+          defaultValue=""
+          onChange={handleFilter}
+        >
+          <option value="">None</option>
+          <option value="sedan">Sedan</option>
+          <option value="suv">SUV</option>
+          <option value="estate">Estate</option>
+        </select>
+      </div>
       <swiper-container
         ref={swiperElRef}
         slides-per-view={slidesPerView}
