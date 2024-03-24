@@ -4,9 +4,10 @@ import Link from "next/link";
 type ActionLinkProps = {
   href: string;
   label: string;
+  id: string;
 };
 
-const ActionLink: React.FC<ActionLinkProps> = ({ href, label }) => {
+const ActionLink: React.FC<ActionLinkProps> = ({ href, label, id }) => {
   return (
     <Link
       href={href}
@@ -18,7 +19,7 @@ const ActionLink: React.FC<ActionLinkProps> = ({ href, label }) => {
         src="/icons/chevron-small.svg"
         width={12}
         height={12}
-        alt={label}
+        alt={`${label} ${id}`}
       />
     </Link>
   );

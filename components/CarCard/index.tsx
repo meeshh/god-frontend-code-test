@@ -36,8 +36,8 @@ const CarCard: React.FC<CarCardProps> = ({
         />
       </figure>
       <footer className="flex items-center justify-center gap-16 mt-16 mb-8">
-        <ActionLink label="Learn" href={`/learn/${id}`} />
-        <ActionLink label="Shop" href={`/shop/${id}`} />
+        <ActionLink label="Learn" id={id} href={`/learn/${id}`} />
+        <ActionLink label="Shop" id={id} href={`/shop/${id}`} />
       </footer>
     </article>
   );

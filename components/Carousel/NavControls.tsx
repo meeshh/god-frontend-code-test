@@ -19,7 +19,11 @@ const NavControls: React.FC<NavControlsProps> = ({
     <div className="flex gap-4 py-16 mt-16 until-lg:hidden">
       <div className="flex-grow" />
 
-      <button className="rounded-full" onClick={handlePrevSlide}>
+      <button
+        className="rounded-full"
+        onClick={handlePrevSlide}
+        aria-label="Previous"
+      >
         <Image
           className="rotate-180"
           width={30}
@@ -28,7 +32,11 @@ const NavControls: React.FC<NavControlsProps> = ({
           alt="Previous"
         />
       </button>
-      <button className="rounded-full" onClick={handleNextSlide}>
+      <button
+        className="rounded-full"
+        onClick={handleNextSlide}
+        aria-label="Next"
+      >
         <Image
           width={30}
           height={30}
