@@ -8,7 +8,7 @@ import { getCars } from "../../utils/cars";
 import { useMediaQuery } from "react-responsive";
 import Pagination from "./Pagination";
 import NavControls from "./NavControls";
-import { BODY_TYPES } from "../../utils/constants";
+import Filter from "./Filter";
 
 register();
 
@@ -73,24 +73,7 @@ const Carousel = () => {
 
   return (
     <>
-      <div className="flex flex-col">
-        <label className="mb-4" htmlFor="carTypeSelector">
-          Select a Car Type
-        </label>
-        <select
-          id="carTypeSelector"
-          className="mb-16 px-16 py-4 border rounded w-xs"
-          defaultValue=""
-          onChange={handleFilter}
-        >
-          <option value="">None</option>
-          {BODY_TYPES.map((bodyType) => (
-            <option key={bodyType} value={bodyType.toLowerCase()}>
-              {bodyType}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Filter handleFilter={handleFilter} />
       <swiper-container
         ref={swiperElRef}
         slides-per-view={slidesPerView}
