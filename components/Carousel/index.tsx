@@ -60,6 +60,12 @@ const Carousel: React.FC<CarouselProps> = ({ data: cars = [] }) => {
     swiperElRef.current?.swiper?.slidePrev();
   };
 
+  const handlePaginationClick = (index: number) => {
+    swiperElRef.current?.swiper?.slideTo(
+      index * (slidesPerView === "auto" ? 1 : slidesPerView)
+    );
+  };
+
   return (
     <>
       <swiper-container
@@ -81,7 +87,13 @@ const Carousel: React.FC<CarouselProps> = ({ data: cars = [] }) => {
        * but there will be the hydration problem with SSR since the window object is not available on the server
        * They are not big components so for the sake of the example it's fine to render them always and hide them with CSS
        */}
-      <Pagination activePage={activePage} numberOfPages={numberOfPages} />
+      <Pagination
+        activePage={activePage}
+        numberOfPages={numberOfPages}
+        onHandlePaginationClick={handlePaginationClick}
+        setActivePage={setActivePage}
+        slidesPerView={slidesPerView}
+      />
       <NavControls
         handlePrevSlide={handlePrevSlide}
         handleNextSlide={handleNextSlide}
