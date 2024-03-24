@@ -1,25 +1,23 @@
-"use client";
-
 import { useEffect, useRef, useState } from "react";
 import CarCard from "../CarCard";
 import { register } from "swiper/element/bundle";
 import { BodyType, CarType } from "../../types";
-import { getCars } from "../../utils/cars";
 import { useMediaQuery } from "react-responsive";
 import Pagination from "./Pagination";
 import NavControls from "./NavControls";
-import Filter from "./Filter";
 
 register();
 
-const Carousel = () => {
+type CarouselProps = {
+  data: CarType[];
+};
+
+const Carousel: React.FC<CarouselProps> = ({ data: cars = [] }) => {
   const swiperElRef = useRef<any>(null);
 
-  const [cars, setCars] = useState<CarType[]>([]);
   const [slidesPerView, setSlidesPerView] = useState<1 | 2 | 3 | 4 | "auto">(4);
   const [activePage, setActivePage] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
-  const [filter, setFilter] = useState<BodyType | undefined>(undefined);
 
   // the native breakpoints from `swiper` do not work well with nextjs
   // so we use `react-responsive` to get the breakpoints
@@ -31,17 +29,6 @@ const Carousel = () => {
     const newSlidesPerView = isSmall ? "auto" : isMedium ? 2 : isLarge ? 3 : 4;
     setSlidesPerView(newSlidesPerView);
   }, [isSmall, isMedium, isLarge]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getCars(filter);
-      setCars(data);
-
-      // set carousel to the first slide when the filter changes
-      swiperElRef.current?.swiper?.slideTo(0);
-    };
-    fetchData();
-  }, [filter]);
 
   useEffect(() => {
     setNumberOfPages(
@@ -60,6 +47,12 @@ const Carousel = () => {
     });
   }, [cars.length, slidesPerView]);
 
+  // reset the active slide when the filter is triggered and the number of total cars changes
+  // this is needed in order not to have a black page in the slider when the new number of cars is less than the previous one
+  useEffect(() => {
+    swiperElRef.current?.swiper?.slideTo(0);
+  }, [cars.length]);
+
   const handleNextSlide = () => {
     swiperElRef.current?.swiper?.slideNext();
   };
@@ -67,13 +60,8 @@ const Carousel = () => {
     swiperElRef.current?.swiper?.slidePrev();
   };
 
-  const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilter(e.target.value as BodyType);
-  };
-
   return (
     <>
-      <Filter handleFilter={handleFilter} />
       <swiper-container
         ref={swiperElRef}
         slides-per-view={slidesPerView}
