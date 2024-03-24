@@ -1,5 +1,7 @@
 /**
  * this is a custom navigation controls component for the carousel as the navigation controls provided by the library has styling limitations
+ * this can be improved by making it more customizable
+ * creating the button component and allowing custom styles as well as labels, icons and more
  */
 
 import Image from "next/image";
@@ -23,7 +25,7 @@ const NavControls: React.FC<NavControlsProps> = ({
           width={30}
           height={30}
           src="/icons/chevron-circled.svg"
-          alt="Previous slide"
+          alt="Previous"
         />
       </button>
       <button className="rounded-full" onClick={handleNextSlide}>
@@ -31,7 +33,7 @@ const NavControls: React.FC<NavControlsProps> = ({
           width={30}
           height={30}
           src="/icons/chevron-circled.svg"
-          alt="Next slide"
+          alt="Next"
         />
       </button>
     </div>

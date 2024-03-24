@@ -15,12 +15,12 @@ const CarCard: React.FC<CarCardProps> = ({
     <article>
       <figure>
         <figcaption>
-          <h6 className="font- uppercase text-secondary font-medium">
+          <h2 className="font- uppercase text-secondary font-medium">
             {bodyType}
-          </h6>
+          </h2>
           <div className="md:flex gap-16" style={{ fontSize: "90%" }}>
-            <h6 className="font-medium">{modelName}</h6>
-            <h6 className="text-secondary mb-16">{modelType}</h6>
+            <h3 className="font-medium">{modelName}</h3>
+            <h4 className="text-secondary mb-16">{modelType}</h4>
           </div>
         </figcaption>
         <Image

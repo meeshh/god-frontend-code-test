@@ -2,6 +2,8 @@
  * this is a custom pagination component for the carousel as the pagination component provided by the library has styling limitations
  */
 
+import { useCallback } from "react";
+
 type PaginationProps = {
   activePage: number;
   numberOfPages: number;
@@ -17,10 +19,13 @@ const Pagination: React.FC<PaginationProps> = ({
   setActivePage,
   slidesPerView,
 }) => {
-  const handlePageClick = (index: number) => {
-    onHandlePaginationClick(index);
-    setActivePage(index / (slidesPerView === "auto" ? 1 : slidesPerView));
-  };
+  const handlePageClick = useCallback(
+    (index: number) => {
+      onHandlePaginationClick(index);
+      setActivePage(index / (slidesPerView === "auto" ? 1 : slidesPerView));
+    },
+    [onHandlePaginationClick, setActivePage, slidesPerView]
+  );
 
   return (
     <div className="w-full flex items-center justify-center gap-8 font-24 mt-16 lg:hidden">

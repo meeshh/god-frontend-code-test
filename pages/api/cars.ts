@@ -1,16 +1,20 @@
 import { promises as fs } from "fs";
+import path from "path";
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { CarType } from "../../types";
-
-// read the cars.json file -- in a real app, this would be a database query in the handler
-const data = await fs.readFile(process.cwd() + "/public/api/cars.json", "utf8");
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
+    // read the cars.json file -- in a real app, this would be a database query in the handler
+    const data = await fs.readFile(
+      path.join(process.cwd(), "/public/api/cars.json"),
+      "utf8"
+    );
+
     const cars: CarType[] = JSON.parse(data);
     const filteredCars = req.query.bodyType
       ? cars.filter((car) => car.bodyType === req.query.bodyType)
